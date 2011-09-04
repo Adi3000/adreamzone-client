@@ -1,0 +1,48 @@
+package applet.connection;
+
+import org.jboss.netty.channel.ChannelHandlerContext;
+import org.jboss.netty.channel.ExceptionEvent;
+import org.jboss.netty.channel.MessageEvent;
+import org.jboss.netty.channel.SimpleChannelUpstreamHandler;
+
+import applet.engine.ClientEngine;
+import engine.EngineLog;
+import engine.common.Order;
+
+public class NettyClientChannelServerHandler extends SimpleChannelUpstreamHandler {
+	private static ClientEngine engine =  ClientEngine.test;
+	//TODO Make a Thread for waiting queue stack and treatment in multiple phases
+	// to wait for positive answer and changed variables (like authentication)
+
+	@Override
+	public void messageReceived(ChannelHandlerContext ctx, MessageEvent e) {
+		
+		Order m = (Order)e.getMessage();
+		//Execute treatment and wait for answer
+		if(!m.isAsynchronous()){
+			EngineLog.CLIENT.fine("["+e.getChannel().getId()+"]\tAbout to compute : " + m);
+			Order response = engine.answerFor(m);
+			EngineLog.CLIENT.fine("["+e.getChannel().getId()+"]\tResponse computed : "+ response);
+			if(response != null){
+				e.getChannel().write(response);
+			}
+		}
+		//Treatment will be executed in background
+		else{
+			//TODO not implemented yet
+			EngineLog.CLIENT.warning("Async message : " + m);
+		}
+		if(m.hasOrderSequence())
+		{
+			EngineLog.CLIENT.finer("Have to wake the thread "+ m.getOrderSequence());
+			engine.notifyThread(m.getOrderSequence());
+		}
+	}
+	
+	public void exceptionCaught(ChannelHandlerContext ctx, ExceptionEvent e)
+	{
+		EngineLog.CLIENT.severe("ServerHandler broken : " + e.getCause().getMessage());
+		e.getCause().printStackTrace();
+	}
+
+}
