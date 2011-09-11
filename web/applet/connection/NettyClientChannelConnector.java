@@ -7,7 +7,7 @@ import org.jboss.netty.bootstrap.ClientBootstrap;
 import org.jboss.netty.channel.ChannelFuture;
 import org.jboss.netty.channel.socket.nio.NioClientSocketChannelFactory;
 
-import engine.EngineLog;
+import common.adreamzone.client.EngineClientLog;
 
 public class NettyClientChannelConnector {
 	//TODO implements some config file to set connection properties 
@@ -35,7 +35,7 @@ public class NettyClientChannelConnector {
 	
 	public ChannelFuture init()
 	{
-		EngineLog.CLIENT.fine("Initializing connection on " + host + ":" + port);
+		EngineClientLog.CLIENT.fine("Initializing connection on " + host + ":" + port);
 		bootstrap.setPipelineFactory(new NettyClientChannelPipelineFactory());
 		return bootstrap.connect(new InetSocketAddress( host, port));
 	}

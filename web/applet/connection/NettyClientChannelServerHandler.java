@@ -6,8 +6,8 @@ import org.jboss.netty.channel.MessageEvent;
 import org.jboss.netty.channel.SimpleChannelUpstreamHandler;
 
 import applet.engine.ClientEngine;
-import engine.EngineLog;
-import engine.common.Order;
+import com.adreamzone.common.Order;
+import common.adreamzone.client.EngineClientLog;
 
 public class NettyClientChannelServerHandler extends SimpleChannelUpstreamHandler {
 	private static ClientEngine engine =  ClientEngine.test;
@@ -20,9 +20,9 @@ public class NettyClientChannelServerHandler extends SimpleChannelUpstreamHandle
 		Order m = (Order)e.getMessage();
 		//Execute treatment and wait for answer
 		if(!m.isAsynchronous()){
-			EngineLog.CLIENT.fine("["+e.getChannel().getId()+"]\tAbout to compute : " + m);
+			EngineClientLog.CLIENT.fine("["+e.getChannel().getId()+"]\tAbout to compute : " + m);
 			Order response = engine.answerFor(m);
-			EngineLog.CLIENT.fine("["+e.getChannel().getId()+"]\tResponse computed : "+ response);
+			EngineClientLog.CLIENT.fine("["+e.getChannel().getId()+"]\tResponse computed : "+ response);
 			if(response != null){
 				e.getChannel().write(response);
 			}
@@ -30,18 +30,18 @@ public class NettyClientChannelServerHandler extends SimpleChannelUpstreamHandle
 		//Treatment will be executed in background
 		else{
 			//TODO not implemented yet
-			EngineLog.CLIENT.warning("Async message : " + m);
+			EngineClientLog.CLIENT.warning("Async message : " + m);
 		}
 		if(m.hasOrderSequence())
 		{
-			EngineLog.CLIENT.finer("Have to wake the thread "+ m.getOrderSequence());
+			EngineClientLog.CLIENT.finer("Have to wake the thread "+ m.getOrderSequence());
 			engine.notifyThread(m.getOrderSequence());
 		}
 	}
 	
 	public void exceptionCaught(ChannelHandlerContext ctx, ExceptionEvent e)
 	{
-		EngineLog.CLIENT.severe("ServerHandler broken : " + e.getCause().getMessage());
+		EngineClientLog.CLIENT.severe("ServerHandler broken : " + e.getCause().getMessage());
 		e.getCause().printStackTrace();
 	}
 

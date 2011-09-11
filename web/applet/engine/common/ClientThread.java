@@ -1,9 +1,10 @@
 package applet.engine.common;
 
 import applet.engine.ClientEngine;
-import engine.EngineLog;
-import engine.common.Order;
-import engine.common.utils.optimizer.CommonValues;
+import com.adreamzone.common.engine.EngineLog;
+import com.adreamzone.common.Order;
+import com.adreamzone.common.utils.optimizer.CommonValues;
+import common.adreamzone.client.EngineClientLog;
 
 /**
  * Thread to treat some process which may ask for many tasks
@@ -36,14 +37,14 @@ public class ClientThread extends Thread{
 				this.startLoginProcess();
 				break;
 			default:
-				EngineLog.CLIENT.warning("Nothing to thread for " + this.order);
+				EngineClientLog.CLIENT.warning("Nothing to thread for " + this.order);
 				break;
 		}
 	}
 
 	private synchronized void startLoginProcess() {
 		// TODO Auto-generated method stub
-		EngineLog.CLIENT.finer("Server contacted, will waiting on " + this.threadSequence);
+		EngineClientLog.CLIENT.finer("Server contacted, will waiting on " + this.threadSequence);
 		try{this.wait();}catch(InterruptedException e){ e.printStackTrace() ;}
 		if(engine.getUUIDCodeSession() != CommonValues.ERROR_OR_INFINITE)
 		{

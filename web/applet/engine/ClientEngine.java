@@ -9,12 +9,13 @@ import org.jboss.netty.channel.ChannelFuture;
 
 import applet.connection.NettyClientChannelConnector;
 import applet.engine.common.ClientThread;
-import engine.Engine;
-import engine.EngineLog;
-import engine.common.Order;
-import engine.common.OrderType;
-import engine.common.utils.optimizer.CommonValues;
-import engine.security.Security;
+import com.adreamzone.common.engine.Engine;
+import com.adreamzone.common.engine.EngineLog;
+import com.adreamzone.common.Order;
+import com.adreamzone.common.OrderType;
+import com.adreamzone.common.utils.optimizer.CommonValues;
+import com.adreamzone.common.security.Security;
+import common.adreamzone.client.EngineClientLog;
 
 public class ClientEngine extends Engine {
 	private Channel chan;
@@ -49,7 +50,7 @@ public class ClientEngine extends Engine {
 			if(futurechan.await(10000))
 			{
 				this.chan = futurechan.getChannel();
-				EngineLog.CLIENT.fine("Connection Successful, waiting for session...");
+				EngineClientLog.CLIENT.fine("Connection Successful, waiting for session...");
 				this.chan.write(connectionOrder);
 				process.start();
 				queue.put(connectionOrder.getOrderSequence(),process);
@@ -63,13 +64,13 @@ public class ClientEngine extends Engine {
 	}
 	
 	public Order answerFor(Order o){
-		EngineLog.CLIENT.finer("Recieved order, compute answer for : " + o);		
+		EngineClientLog.CLIENT.finer("Recieved order, compute answer for : " + o);		
 		return super.answerFor(o);
 	}
 
 	public boolean receive(String readLine) {
 		// TODO Auto-generated method stub
-		EngineLog.CLIENT.finer("Recieved order: " +readLine);
+		EngineClientLog.CLIENT.finer("Recieved order: " +readLine);
 		return true;
 	}
 	
@@ -82,7 +83,7 @@ public class ClientEngine extends Engine {
 			//TODO register hashcode in someplace for log. 
 			uuidCodeSession = hashCode;
 			Order.setSessionID(uuidCodeSession);
-			EngineLog.CLIENT.info("Session UID is " + uuidCodeSession);
+			EngineClientLog.CLIENT.info("Session UID is " + uuidCodeSession);
 			this.isConnected = true;
 			return Order.ACK;
 		}
@@ -92,7 +93,7 @@ public class ClientEngine extends Engine {
 	public boolean sendAuthInfo(String user, String password)
 	{
 		String[] authInfo = {user,password};
-		EngineLog.CLIENT.fine("Will ask for authentication for " + authInfo[0]);
+		EngineClientLog.CLIENT.fine("Will ask for authentication for " + authInfo[0]);
 		chan.write(new Order(OrderType.UPDATE,new Order(OrderType.AUTH, authInfo)));
 		return true;
 	}

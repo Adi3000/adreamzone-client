@@ -5,7 +5,6 @@ import org.jboss.netty.channel.Channels;
 
 public class NettyClientChannelPipelineFactory implements ChannelPipelineFactory {
 
-	@Override
 	public ChannelPipeline getPipeline() throws Exception {
 		// Chain to decode/encode a message
 		return Channels.pipeline(
