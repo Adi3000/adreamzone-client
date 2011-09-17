@@ -1,10 +1,9 @@
-package applet.engine.common;
+package com.adreamzone.common.engine;
 
-import applet.engine.ClientEngine;
+
 import com.adreamzone.common.engine.EngineLog;
 import com.adreamzone.common.Order;
 import com.adreamzone.common.utils.optimizer.CommonValues;
-import common.adreamzone.client.EngineClientLog;
 
 /**
  * Thread to treat some process which may ask for many tasks

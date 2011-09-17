@@ -1,4 +1,4 @@
-package applet.connection;
+package com.adreamzone.common.server.connection;
 import org.jboss.netty.channel.ChannelPipeline;
 import org.jboss.netty.channel.ChannelPipelineFactory;
 import org.jboss.netty.channel.Channels;

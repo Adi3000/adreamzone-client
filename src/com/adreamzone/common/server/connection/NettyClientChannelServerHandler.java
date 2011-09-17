@@ -1,13 +1,13 @@
-package applet.connection;
+package com.adreamzone.common.server.connection;
 
 import org.jboss.netty.channel.ChannelHandlerContext;
 import org.jboss.netty.channel.ExceptionEvent;
 import org.jboss.netty.channel.MessageEvent;
 import org.jboss.netty.channel.SimpleChannelUpstreamHandler;
 
-import applet.engine.ClientEngine;
 import com.adreamzone.common.Order;
-import common.adreamzone.client.EngineClientLog;
+import com.adreamzone.common.engine.ClientEngine;
+import com.adreamzone.common.engine.EngineClientLog;
 
 public class NettyClientChannelServerHandler extends SimpleChannelUpstreamHandler {
 	private static ClientEngine engine =  ClientEngine.test;

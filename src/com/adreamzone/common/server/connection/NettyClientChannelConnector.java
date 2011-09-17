@@ -1,4 +1,4 @@
-package applet.connection;
+package com.adreamzone.common.server.connection;
 
 import java.net.InetSocketAddress;
 import java.util.concurrent.Executors;
@@ -7,7 +7,8 @@ import org.jboss.netty.bootstrap.ClientBootstrap;
 import org.jboss.netty.channel.ChannelFuture;
 import org.jboss.netty.channel.socket.nio.NioClientSocketChannelFactory;
 
-import common.adreamzone.client.EngineClientLog;
+import com.adreamzone.common.engine.EngineClientLog;
+
 
 public class NettyClientChannelConnector {
 	//TODO implements some config file to set connection properties 
