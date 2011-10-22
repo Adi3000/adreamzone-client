@@ -1,21 +1,33 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>adreamzone-client</groupId>
+  <groupId>com.adreamzone</groupId>
   <artifactId>adreamzone-client</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
-  <name>adreamzone-client DEV</name>
-  <description>adreamzone-client DEV</description>
+  <name>A-dream-zone</name>
+  <description>A dream zone</description>
   	<ciManagement>
 		<system>Continuum</system>
 		<url>code.a-dream-zone.com/continuum</url>
 	</ciManagement>
 	<scm>
-		<connection>scm:svn:http://code.a-dream-zone.com/svn/adreamzone/adreamzone-client/</connection>
+		<connection>scm:svn:http://code.a-dream-zone.com/svn/adreamzone/adreamzone-client/trunk/</connection>
 		<developerConnection>http://code.a-dream-zone.com/svn/adreamzone/adreamzone-client/trunk/</developerConnection>
 		<tag>HEAD</tag>
 		<url>scm:svn:http://code.a-dream-zone.com/svn/adreamzone/adreamzone-client/</url>
 	</scm>
+  <distributionManagement>
+    <repository>
+      <id>internal</id>
+      <name>Internal Release Repository</name>
+      <url>dav:http://code.a-dream-zone.com/archiva/repository/internal/</url>
+    </repository>
+    <snapshotRepository>
+      <id>snapshots</id>
+      <name>Internal Snapshot Repository</name>
+      <url>dav:http://code.a-dream-zone.com/archiva/repository/snapshots</url>
+    </snapshotRepository>
+  </distributionManagement>
   <dependencies>
 	  <dependency>
 	      <groupId>com.adreamzone</groupId>
