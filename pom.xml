@@ -6,6 +6,16 @@
   <packaging>war</packaging>
   <name>adreamzone-client DEV</name>
   <description>adreamzone-client DEV</description>
+  	<ciManagement>
+		<system>Continuum</system>
+		<url>code.a-dream-zone.com/continuum</url>
+	</ciManagement>
+	<scm>
+		<connection>scm:svn:http://code.a-dream-zone.com/svn/adreamzone/adreamzone-client/</connection>
+		<developerConnection>http://code.a-dream-zone.com/svn/adreamzone/adreamzone-client/trunk/</developerConnection>
+		<tag>HEAD</tag>
+		<url>scm:svn:http://code.a-dream-zone.com/svn/adreamzone/adreamzone-client/</url>
+	</scm>
   <dependencies>
 	  <dependency>
 	      <groupId>com.adreamzone</groupId>
@@ -13,4 +23,4 @@
 	      <version>0.0.1-SNAPSHOT</version>
 	    </dependency>
     </dependencies>
-</project>
+ </project>
