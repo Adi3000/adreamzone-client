@@ -4,8 +4,8 @@
   <artifactId>adreamzone-client</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
-  <name>A-dream-zone</name>
-  <description>A dream zone</description>
+  <name>A-dream-zone client</name>
+  <description>A dream zone client</description>
   	<ciManagement>
 		<system>Continuum</system>
 		<url>code.a-dream-zone.com/continuum</url>
@@ -16,6 +16,15 @@
 		<tag>HEAD</tag>
 		<url>scm:svn:http://code.a-dream-zone.com/svn/adreamzone/adreamzone-client/</url>
 	</scm>
+	<build>
+		<extensions>
+			<extension>
+				<groupId>org.apache.maven.wagon</groupId>
+				<artifactId>wagon-webdav</artifactId>
+				<version>1.0-beta-2</version>
+			</extension>
+		</extensions>
+	</build>
   <distributionManagement>
     <repository>
       <id>internal</id>
