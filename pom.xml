@@ -34,7 +34,7 @@
     <snapshotRepository>
       <id>snapshots</id>
       <name>Internal Snapshot Repository</name>
-      <url>dav:http://code.a-dream-zone.com/archiva/repository/snapshots</url>
+      <url>dav:http://code.a-dream-zone.com/archiva/repository/snapshots/</url>
     </snapshotRepository>
   </distributionManagement>
   <dependencies>
