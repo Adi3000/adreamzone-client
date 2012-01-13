@@ -41,6 +41,7 @@ public class ClientEngine extends Engine {
 	public boolean  initConnection()
 	{
 		ChannelFuture futurechan = new NettyClientChannelConnector().init();
+		//TODO change the HashCode with the one recepted by siteweb
 		Order connectionOrder = new Order(OrderType.CONNECT, this.hashCode());
 		ClientThread process = new ClientThread(connectionOrder,this);
 		connectionOrder.setOrderSequence(process.getThreadSequence());
