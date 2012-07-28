@@ -15,7 +15,20 @@
 		<developerConnection>http://code.a-dream-zone.com/svn/adreamzone/adreamzone-client/trunk/</developerConnection>
 		<tag>HEAD</tag>
 		<url>scm:svn:http://code.a-dream-zone.com/svn/adreamzone/adreamzone-client/</url>
-	</scm>
+	</scm>      
+	<build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.1</version>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                </configuration>
+             </plugin>
+         </plugins>
+      </build>
 	<dependencies>
 	  <dependency>
 	      <groupId>com.adreamzone</groupId>
